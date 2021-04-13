@@ -1,0 +1,44 @@
+<div style="margin: 2% 15%; background-color: white; padding: 20px;">
+    <h2>Angular Reactive Form validation</h2>
+    <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+        <div fxLayout="column" fxLayoutAlign="space-around">
+    <div class="pb-1">
+        <mat-form-field style="width: 100%">
+        <label for="firstName">First Name</label>
+        <input type="text" matInput  formControlName="firstName" required />
+        <mat-error>First Name is required</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="pb-1" >
+        <mat-form-field style="width: 100%">
+        <label for="lastName">Last Name</label>
+        <input type="text"  matInput formControlName="lastName" required />
+        
+        <mat-error>Last Name is required</mat-error>
+        
+        </mat-form-field>
+    </div>
+    <div class="pb-1" >
+        <mat-form-field style="width: 100%">
+        <label for="email">Email</label>
+        <input type="text" matInput  formControlName="email"/>
+        <mat-error *ngIf="form.get('email').errors?.required">Email Name is required</mat-error>
+        <mat-error *ngIf="form.get('email').errors?.email">Email must be a valid email Address</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="pb-1" >
+        <mat-form-field style="width: 100%">
+        <label for="mobileNumber">Mobile Number</label>
+        <input type="number" matInput  formControlName="mobileNumber" maxlength="10"/>
+        <mat-error *ngIf="form.get('mobileNumber').errors?.required">Mobile Number is required</mat-error>
+        <mat-error *ngIf="form.get('mobileNumber').errors?.maxlength">Mobile Number  must be a 10 digit number</mat-error>
+        </mat-form-field>
+        
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" >
+        <button  mat-raised-button color="primary" type="submit"  [disabled]="!form.valid">Register</button>
+    </div>
+</div>
+    </form>
+</div>
+
